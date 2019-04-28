@@ -16,7 +16,7 @@ A vim configured plugins for golang development with:
 8. Git information check
 9. Json, Yaml, Toml, Markdown file enhanced preview
 10. Eslint
-11. Code indent enhanced display via highlight
+11. Code indents enhanced display via highlight, auto paired brackets and quota
 12. Spelling check for english language with go through spelling errors with `]s` & `[s]`
 
 # Dependency
@@ -36,3 +36,4 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 cp vimrc ~/.vimrc
 ```
 3. open vim and `:PlugInstall`
+4. install YCM completer: `cd ~/.vim/plugged/YouCompleteMe/ && ./install.py --clang-completer  --go-completer`
