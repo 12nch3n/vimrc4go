@@ -17,7 +17,7 @@ A vim configured plugins for golang development with:
 9. Json, Yaml, Toml, Markdown file enhanced preview
 10. Eslint
 11. Code indents enhanced display via highlight, auto paired brackets and quota
-12. Spelling check for english language with go through spelling errors with `]s` & `[s]`
+12. Spelling check for english language with go through spelling errors with `]s` & `[s`
 
 # Dependency
 1. vim 7.4+
