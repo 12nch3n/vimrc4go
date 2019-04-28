@@ -1,4 +1,5 @@
 if empty(glob('~/.vim/autoload/plug.vim'))
+
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
@@ -19,7 +20,7 @@ Plug 'tc50cal/vim-terminal'
 Plug 'vim-scripts/ZoomWin'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'urbainvaes/vim-tmux-pilot'
-Plug 'gregsexton/gitv'
+Plug 'gregsexton/gitv' , {'on': ['Gitv']}
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'kien/ctrlp.vim'
@@ -46,6 +47,11 @@ Plug 'ervandew/supertab'
 Plug 'honza/vim-snippets'
 Plug 'iamcco/mathjax-support-for-mkdp'
 Plug 'iamcco/markdown-preview.vim'
+Plug 'mattn/emmet-vim'
+Plug 'hail2u/vim-css3-syntax'
+Plug 'pangloss/vim-javascript'
+Plug 'vim-scripts/groovy.vim'
+Plug 'martinda/Jenkinsfile-vim-syntax'
 call plug#end()
 
 set guifont=Monaco\ for\ Powerline:h14.5
@@ -58,7 +64,7 @@ set fillchars+=stl:\ ,stlnc:\
 set term=xterm-256color
 set termencoding=utf-8
 syntax enable
-:set spell spelllang=en_us
+set spell spelllang=en_us
 
 " These lines setup the environment to show graphics and colors correctly.
 set nocompatible
@@ -151,8 +157,11 @@ let g:nerdtree_tabs_open_on_gui_startup = 2 "set to 2, open only if directory wa
 let g:nerdtree_tabs_open_on_console_startup = 2 "set to 2, open only if directory was given as startup argument).
 
 let g:indent_guides_enable_on_vim_startup = 1
-set smartindent
 
+set shiftwidth=4
+set tabstop=4
+autocmd FileType py,groovy set expandtab
+set smartindent
 autocmd FileType go set shiftwidth=2 | set tabstop=2
 
 " vim-tmux-pilot
@@ -164,6 +173,9 @@ let g:pilot_boundary='create'
 
 
 "" vim-go
+let g:godef_split = 3
+let g:godef_same_file_in_same_window=1
+let g:go_fmt_fail_silently = 1
 let g:go_fmt_command = "goimports"
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
@@ -172,13 +184,13 @@ let g:go_highlight_operators = 1
 let g:go_term_enabled = 1
 let g:go_highlight_build_constraints = 1
 let g:go_auto_type_info = 1
-let g:go_metalinter_autosave = 1
+let g:go_metalinter_autosave = 0 " disabled and replace with syntastic checking
 let g:go_metalinter_autosave_enabled = [
       \  'golint',
       \  'vet',
       \]
 
-hi link goModuleKeyword	Identifier
+hi link goModuleKeyword		Identifier
 hi link goVariableDef		Identifier
 hi link goFuncArgs		Identifier
 hi link goFuncCall		Function
@@ -186,12 +198,15 @@ hi link goObjectProp		Identifier
 hi link goObjectKey		Label
 hi link goObjectValue		Normal
 
+
 " syntastic
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_go_checkers = ['go', 'golint', 'govet']
+let g:syntastic_check_on_wq = 1
+let g:go_list_type = 'quickfix'
+let g:syntastic_go_checkers = ['golint', 'govet', 'goimports', 'gofmt']
+" let g:syntastic_go_gometalinter_args = ['--disable-all', '--enable=errcheck']
 
 " ctrlp
 let g:ctrlp_working_path_mode = 'c' " 'c' - the directory of the current file.
@@ -213,4 +228,8 @@ let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
-
+" emmet css
+let g:user_emmet_install_global = 0
+autocmd FileType html,css EmmetInstall
+autocmd filetype *html* imap <c-_> <c-y>/
+autocmd filetype *html* map <c-_> <c-y>/
