@@ -24,6 +24,7 @@ A vim configured plugins for golang development with:
 2. Python3
 3. Powerline `pip3 install powerline` https://github.com/powerline/powerline
 4. Poverline fonts https://github.com/powerline/fonts
+5. tmux2+
 
 ## Install
 1. install vim-plug
@@ -37,3 +38,5 @@ cp vimrc ~/.vimrc
 ```
 3. open vim and `:PlugInstall`
 4. install YCM completer: `cd ~/.vim/plugged/YouCompleteMe/ && ./install.py --clang-completer  --go-completer`
+5. add tmux config: `cp tmux.conf ~/.tmux.conf`
+6. add tmux session launch: `cp bash_ide ~/.bash_ide && echo "soure ~/.bash_ide" >> ~/.bashrc"`
