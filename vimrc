@@ -103,6 +103,7 @@ set foldmethod=indent
 
 " autosave
 let g:go_metalinter_autosave_enabled = ['vet', 'golint', 'test']
+let g:go_metalinter_deadline = "5s"
 
 
 syntax on
@@ -163,18 +164,20 @@ set tabstop=4
 autocmd FileType py,groovy set expandtab
 set smartindent
 autocmd FileType go set shiftwidth=2 | set tabstop=2
+autocmd FileType go nmap <Leader>s <Plug>(go-def-split)
+autocmd FileType go nmap <Leader>v <Plug>(go-def-vertical)
+autocmd FileType go nmap <Leader>t <Plug>(go-def-tab)
 
 " vim-tmux-pilot
 " Uncomment to enable navigation of vim tabs
  let g:pilot_mode='wintab'
 
 " Uncomment to enable creation of vim splits automatically
-let g:pilot_boundary='create'
+" let g:pilot_boundary='create'
 
 
 "" vim-go
-let g:godef_split = 3
-let g:godef_same_file_in_same_window=1
+let g:go_def_mode = 'godef'
 let g:go_fmt_fail_silently = 1
 let g:go_fmt_command = "goimports"
 let g:go_highlight_functions = 1
@@ -186,6 +189,7 @@ let g:go_highlight_build_constraints = 1
 let g:go_auto_type_info = 1
 let g:go_metalinter_autosave = 0 " disabled and replace with syntastic checking
 let g:go_metalinter_autosave_enabled = [
+      \  'goimports',
       \  'golint',
       \  'vet',
       \]
@@ -205,8 +209,8 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 1
 let g:go_list_type = 'quickfix'
-let g:syntastic_go_checkers = ['golint', 'govet', 'goimports', 'gofmt']
-" let g:syntastic_go_gometalinter_args = ['--disable-all', '--enable=errcheck']
+let g:syntastic_go_checkers = [ 'golint', 'govet', 'gofmt']
+let g:syntastic_go_gometalinter_args = ['--disable-all', '--enable=errcheck']
 
 " ctrlp
 let g:ctrlp_working_path_mode = 'c' " 'c' - the directory of the current file.
@@ -221,6 +225,10 @@ let g:ctrlp_custom_ignore = {
 " " make YCM compatible with UltiSnips (using supertab)
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:ycm_semantic_triggers =  {
+			\ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
+			\ 'cs,lua,javascript': ['re!\w{2}'],
+			\ }
 let g:SuperTabDefaultCompletionType = '<C-n>'
 
 " better key bindings for UltiSnipsExpandTrigger
@@ -231,5 +239,10 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 " emmet css
 let g:user_emmet_install_global = 0
 autocmd FileType html,css EmmetInstall
-autocmd filetype *html* imap <c-_> <c-y>/
-autocmd filetype *html* map <c-_> <c-y>/
+autocmd FileType *html* imap <c-_> <c-y>/
+autocmd FileType *html* map <c-_> <c-y>/
+
+
+" <Page Up/Down> change tab
+nmap <PageUp> gt<CR>
+nmap <PageDown> gT<CR>
