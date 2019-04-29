@@ -39,4 +39,5 @@ cp vimrc ~/.vimrc
 3. open vim and `:PlugInstall`
 4. install YCM completer: `cd ~/.vim/plugged/YouCompleteMe/ && ./install.py --clang-completer  --go-completer`
 5. add tmux config: `cp tmux.conf ~/.tmux.conf`
+6. install tmux plugin manager: `makdr -p ~/.tmux/plugins/ && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm`
 6. add tmux session launch: `cp bash_ide ~/.bash_ide && echo "soure ~/.bash_ide" >> ~/.bashrc"`
