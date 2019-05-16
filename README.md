@@ -1,6 +1,6 @@
 # vim4go
 
-# Description
+## Description
 
 A vim configured plugins for golang development with:
 1. Workspace tree view with `F2`
@@ -19,7 +19,7 @@ A vim configured plugins for golang development with:
 11. Code indents enhanced display via highlight, auto paired brackets and quota
 12. Spelling check for english language with go through spelling errors with `]s` & `[s`
 
-# Dependency
+## Dependency
 1. vim 7.4+
 2. Python3
 3. Powerline `pip3 install powerline` https://github.com/powerline/powerline

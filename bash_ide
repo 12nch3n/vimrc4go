@@ -4,14 +4,16 @@ export LC_ALL="en_US.UTF-8"
 
 tmux_init()
 {
-    tmux new-session -s "IDE" -d -n "GOVIM"   # 开启一个会话
-	tmux splitw -t IDE:1 -d -v -p 10
-	tmux splitw -t IDE:2 -d -v -p 10
-    tmux -2 attach-session -d                       # tmux -2强制启用256color，连接已开启的tmux
-	tmux select-window -t IDE:2
+	if  [ ! -z "$TMUX" ]; then
+		tmux has_session -t IDE
+		if [ $? != 0 ]; then 
+			tmux new-session -s "IDE" -d -n "GOVIM"
+			tmux splitw -t IDE:1 -d -v -p 10
+			tmux splitw -t IDE:2 -d -v -p 10
+			tmux -2 attach-session -d
+			tmux select-window -t IDE:2
+		else
+			tmux attach -t IDE
+		fi
+	fi
 }
-
-# 判断是否已有开启的tmux会话，没有则开启
-if which tmux 2>&1 >/dev/null; then
-    test -z "$TMUX" && (tmux attach || tmux_init)
-fi
