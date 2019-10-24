@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "coc-ultisnips": ">=1.2.3",
+    "coc-tag": ">=1.2.4",
+    "coc-syntax": ">=1.2.4",
+    "coc-emoji": ">=1.2.3",
+    "coc-word": ">=1.2.2",
+    "coc-dictionary": ">=1.2.2",
+    "coc-gocode": ">=1.2.4",
+    "coc-json": ">=1.2.3"
+  }
+}
